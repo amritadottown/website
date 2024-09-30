@@ -1,0 +1,145 @@
+:root {
+    color-scheme: light dark;
+    --base: #FAF7F0;
+    --text: #000000d0;
+    --secondary: #00000025;
+    --tertiary: #00000010;
+    --accent: #ae0c3e;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --base: #181818;
+        --text: #ffffffe0;
+        --secondary: #ffffff30;
+        --tertiary: #ffffff09;
+        --accent: #e0527a;
+    }
+}
+
+/* reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    background-clip: padding-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+    text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+} 
+  
+body {
+    height: 100%;
+
+    background-color: var(--base);
+    color: var(--text);    
+
+    line-height: 1.72;
+    margin: 0 auto;
+    width: min(80%, 80ch); */
+} 
+
+/* inline */
+
+p {
+    margin-block-end: 1rem;
+}
+
+a {
+    color: var(--accent);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-block: 0.5em;
+}
+
+small {
+    font-size: 0.85rem;
+    line-height: 1rem;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.35rem;
+}
+
+h6 {
+    font-size: 1.15rem;
+}
+
+kbd {
+    border: 1px solid var(--text);
+    border-radius: 0.2rem;
+    padding: 1px 4px;
+    font-family: monospace;    
+}
+
+code {
+    background-color: var(--tertiary);
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--secondary);
+    border-radius: 0.2rem;
+}
+
+/* block */
+
+ul, ol {
+    margin-inline-start: 1.5rem;
+
+    li {
+        margin-block: 0.8rem;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr:nth-child(even) {
+        background-color: var(--tertiary);
+    }
+}
+
+td, th {
+    border: 1px solid var(--secondary);
+    padding: 0.5rem;
+}
+
+blockquote {
+    margin-left: 0.5rem;
+    border-left: 2px solid var(--secondary);
+    font-style: italic;
+    padding-inline-start: 0.5rem;
+}
+
+hr {
+    border: 1px solid var(--secondary);
+}
+
+details {
+    background-color: var(--tertiary);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--secondary);
+    border-radius: 0.2rem;
+}
