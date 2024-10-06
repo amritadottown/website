@@ -1,0 +1,78 @@
+---
+layout: '@/layouts/BaseLayout.astro'
+title: Home
+---
+
+import members from '@/members.json';
+
+# amrita.town
+
+a webring for Amrita students.
+
+[Take me to a random site](/random)  
+[Learn more about us](/about)
+
+---
+
+## manifesto
+
+### a vision
+
+you are not a user. you are not a statistic. you are a person.
+
+a person, with a unique sense of self, and a unique experience worth sharing. expressing yourself as you are, and who you could be, is our mission.
+
+picture this, a place on the internet, with your name on it. this place looks exactly the way you want it to look. a place made for other people to drop in, and get to know you. a place that truly belongs to you.
+
+what if you could truly express yourself as you are, with the power of free and open technology that's only gotten better as the years have gone by.
+
+imagine a place where you could post about your interests, rant about your day, a guestbook for others to drop by and leave notes to you to read, blogs about what you're passionate about, a place to post the photos you want others to see, or the books and movies and art that inspires you.
+
+a personal website is the answer.
+
+it's the first step towards claiming ownership of your digital identity. if that notion excites you, read on.
+
+### perfect websites are not the goal
+
+building a website has always been an attainable goal for anyone. unfortunately, the modern web has concealed this in a veil of complexity and 'professionalism'.
+
+the point is ownership, not perfection.
+
+in fact, imperfection is encouraged if the end result is a true expression of humanity and authenticity.
+
+free yourself of what you think a website _should_ look like and make one that speaks to who you are. the only condition is to have a place you're proud of and a place that is truly your own.
+
+perfect is for web designers and people working jobs. do you speak perfect sentences to your close friends?
+
+### how do i find others?
+
+amrita town is a webring, a place connecting all of your online homes, built up of personal websites made by students of amrita. each website contains a widget connecting you to other websites in the webring and this website.
+
+a collection of websites, loving crafted by their creators to be true representations of who they are. that's what we envision the internet to truly be like.
+
+join us in trying to bring back this vision of the internet.
+
+you can go ahead and meet us irl if you want to.
+
+---
+
+# members
+
+<table>
+	<thead>
+		<tr>
+			<th scope="col">Member</th>
+			<th scope="col">Website</th>
+		</tr>
+	</thead>
+	<tbody>
+		{Object.values(members).map((e) => (
+			<tr>
+				<td>{e.name}</td>
+				<td>
+					<a href={e.website}>{e.website}</a>
+				</td>
+			</tr>
+		))}
+	</tbody>
+</table>
