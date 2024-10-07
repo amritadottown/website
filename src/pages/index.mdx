@@ -3,7 +3,7 @@ layout: '@/layouts/BaseLayout.astro'
 title: Home
 ---
 
-import members from '@/members.json';
+import MemberList from '@/components/MemberList.astro';
 
 # amrita.town
 
@@ -14,26 +14,8 @@ have a personal website? [join us](/join)
 don't know where to start? check out our [resources](/resources)
 
 <details style="margin-top: 0.5rem">
-<summary>our members. you could be one of them!</summary>
-
-<table>
-	<thead>
-		<tr>
-			<th scope="col">Member</th>
-			<th scope="col">Website</th>
-		</tr>
-	</thead>
-	<tbody>
-		{Object.values(members).map((e) => (
-			<tr>
-				<td>{e.name}</td>
-				<td>
-					<a href={e.website}>{e.website}</a>
-				</td>
-			</tr>
-		))}
-	</tbody>
-</table>
+	<summary>our members. you could be one of them!</summary>
+	<MemberList />
 </details>
 
 ## how to join

@@ -40,7 +40,7 @@ body {
 
 	line-height: 1.72;
 	margin: 2rem auto;
-	width: min(80%, 80ch); /* */
+	width: min(85%, 80ch);
 }
 
 /* inline */
@@ -152,5 +152,5 @@ details {
 }
 
 details[open] > summary {
-  margin-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }

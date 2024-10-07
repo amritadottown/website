@@ -1,0 +1,73 @@
+---
+import members from '@/members.json';
+---
+
+<>
+	<table class="wide-list">
+		<thead>
+			<tr>
+				<th scope="col">Member</th>
+				<th scope="col">Website</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				members.map((e) => (
+					<tr>
+						<td>{e.name}</td>
+						<td>
+							<a href={e.website}>{e.website}</a>
+						</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+	<div class="narrow-list">
+		{
+			members.map((e) => (
+				<div class="container">
+					<p class="name">{e.name}</p>
+					<a href={e.website}>{e.website}</a>
+				</div>
+			))
+		}
+	</div>
+</>
+
+<style>
+	.wide-list {
+		display: none;
+	}
+
+	.narrow-list {
+		display: block;
+	}
+
+	@media (min-width: 768px) {
+		.wide-list {
+			display: table;
+		}
+
+		.narrow-list {
+			display: none;
+		}
+	}
+
+	.container {
+		margin-bottom: 0.2;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid var(--secondary);
+	}
+
+	.container:last-child {
+		border-bottom: none;
+	}
+
+	p.name {
+		font-size: 1.35rem;
+		font-weight: 600;
+		margin-bottom: 0;
+	}
+</style>
