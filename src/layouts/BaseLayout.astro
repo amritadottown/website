@@ -17,6 +17,7 @@ const { title } = (Astro.props['frontmatter'] as Props) || Astro.props;
 		<title>{title} - amrita.town</title>
 	</head>
 	<body>
+		{Astro.url.pathname !== '/' && <a href="/">← back home</a>}
 		<slot />
 	</body>
 </html>

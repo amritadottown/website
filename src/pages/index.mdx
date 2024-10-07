@@ -9,12 +9,38 @@ import members from '@/members.json';
 
 a webring for Amrita students.
 
-[Take me to a random site](/random)  
-[Learn more about us](/about)
+want to take a look? [random site](/random)  
+have a personal website? [join us](/join)  
+don't know where to start? check out our [resources](/resources)
 
----
+<details style="margin-top: 0.5rem">
+<summary>our members. you could be one of them!</summary>
 
-## manifesto
+<table>
+	<thead>
+		<tr>
+			<th scope="col">Member</th>
+			<th scope="col">Website</th>
+		</tr>
+	</thead>
+	<tbody>
+		{Object.values(members).map((e) => (
+			<tr>
+				<td>{e.name}</td>
+				<td>
+					<a href={e.website}>{e.website}</a>
+				</td>
+			</tr>
+		))}
+	</tbody>
+</table>
+</details>
+
+## how to join
+
+are you an amrita student? do you have a personal website? we'd love to have you as a part of this. send us an email at [contact@amrita.town](mailto:contact@amrita.town), telling us a little about who you are, and of course a link to your website.
+
+## what we're about
 
 ### a vision
 
@@ -53,26 +79,3 @@ a collection of websites, loving crafted by their creators to be true representa
 join us in trying to bring back this vision of the internet.
 
 you can go ahead and meet us irl if you want to.
-
----
-
-# members
-
-<table>
-	<thead>
-		<tr>
-			<th scope="col">Member</th>
-			<th scope="col">Website</th>
-		</tr>
-	</thead>
-	<tbody>
-		{Object.values(members).map((e) => (
-			<tr>
-				<td>{e.name}</td>
-				<td>
-					<a href={e.website}>{e.website}</a>
-				</td>
-			</tr>
-		))}
-	</tbody>
-</table>

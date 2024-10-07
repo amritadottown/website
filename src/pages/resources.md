@@ -14,7 +14,7 @@ We have attached some inspirations for you to look at and steal. Everything is f
 
 Here are some tools to help you get started on your website development.
 
-### Static Site Geenrators
+### Static Site Generators
 
 These are tools that generate a complete static website from your Markdown or HTML files, according to a template that you can either build yourself or find on the internet. This works great for infrequently-updated sites like a personal internet home.
 
