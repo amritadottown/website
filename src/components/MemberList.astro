@@ -16,7 +16,7 @@ import members from '@/members.json';
 					<tr>
 						<td>{e.name}</td>
 						<td>
-							<a href={e.website}>{e.website}</a>
+							<a href={e.website}>{e.website.substring(8)}</a>
 						</td>
 					</tr>
 				))
