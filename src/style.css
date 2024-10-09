@@ -60,7 +60,8 @@ h4,
 h5,
 h6 {
 	font-weight: 600;
-	margin-block: 0.5em;
+	line-height: 1.25;
+	margin-block: 0.96em;
 }
 
 small {
