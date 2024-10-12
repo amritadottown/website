@@ -12,7 +12,7 @@ We have attached some inspirations for you to look at and steal. Everything is f
 
 ## Tools For Making A Website
 
-Here are some tools to help you get started on your website development.
+Here are some tools to help you get started on your website development. Remember, this is just a directory - consult the documentation on whatever you're interested in using to know more.
 
 ### Static Site Generators
 
@@ -21,10 +21,14 @@ These are tools that generate a complete static website from your Markdown or HT
 -   [hugo](https://gohugo.io) - a very popular SSG written in Go with a massive ecosystem of themes. Check out [https://themes.gohugo.io/](https://themes.gohugo.io/) - you may recognize some of these from around the web!
 -   [astro](https://astro.build/) - a JavaScript-based SSG that uses the developer experience of React to build lightweight static websites, which works great for personal websites of all kinds. Take a look at their [themes](https://astro.build/themes/) page for templates you can use and iterate on.
 
-### Deployment
+We don't recommend:
+- Server-rendered sites (Flask, Django, etc.): these are more difficult to host since they need a persistent backend server. 
+- CMSes (WordPress, Ghost etc): the CMS is a large piece of software that you either have to worry about hosting and maintaining yourself, or give up control to a service provider.
+- Frontend frameworks (React, Svelte, etc.): for a mostly content-based site like a personal website, these will simply increase client load times and resource consumption for little benefit.
 
 SSGs are great because they output pure HTML and CSS files that can just be served from disk. Your website doesn't contain any backend code that runs on a server (unless you opt-in). Static hosting is extremely cheap to run, and there's many completely free services - called _Jamstack hosts_ - that you can use to deploy your website. If your website is on a service like GitHub, they can automatically deploy a new version of your website when you push changes.
 
+-   [Neocities](https://neocities.org/) is an indie web-focused website host with a lovely tutorial.
 -   [Cloudflare Pages](https://pages.cloudflare.com/)
 -   [Vercel](https://vercel.com)
 -   [Netlify](https://netlify.com)
