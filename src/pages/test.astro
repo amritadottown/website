@@ -1,0 +1,7 @@
+---
+import members from '@/members.json';
+---
+
+{members.toReversed().map(e => (
+    <p>{e.name}</p>
+))}
