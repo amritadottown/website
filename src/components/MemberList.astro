@@ -16,8 +16,8 @@ import members from '@/members.json';
 					<tr>
 						<td>{e.name}</td>
 						<td>
-							<a href={e.website}>
-								{e.website.substring(8, e.website.length - 1)}
+							<a href={`https://${e.website}/`}>
+								{e.website}
 							</a>
 						</td>
 					</tr>
@@ -30,7 +30,7 @@ import members from '@/members.json';
 			members.map((e) => (
 				<div class="container">
 					<p class="name">{e.name}</p>
-					<a href={e.website}>{e.website.substring(8, e.website.length - 1)}</a>
+					<a href={`https://${e.website}/`}>{e.website}</a>
 				</div>
 			))
 		}

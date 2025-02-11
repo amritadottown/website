@@ -25,22 +25,19 @@ emphasis on the _personal_ part, btw - we're looking for websites that tell othe
 
 1. make sure your website is a personal website and it has contact details somewhere.
 2. add these links to your website - most people put it in the footer, but presentation is up to you. just make sure it's easily accessible.
-```html
-<a href="https://amrita.town">amrita.town</a>
-<a href="https://amrita.town/prev">
-    <span>←</span>
-    <span>prev</span>
-</a>
-<a href="https://amrita.town/random">
-    <span>⚄</span>
-    <span>random</span>
-</a>
-<a href="https://amrita.town/next">
-    <span>next</span>
-    <span>→</span>
-</a>
-```
-3. send a pr to add yourself to `src/members.json` on our [github](https://github.com/amritadottown/website). feel free to tell us a little bit about yourself too.
+
+    ```html
+    <div>
+        <a href="https://amrita.town">amrita.town</a>
+        <a href="https://amrita.town/prev">← prev</a>
+        <a href="https://amrita.town/random">⚄ random</a>
+        <a href="https://amrita.town/next">next →</a>
+    </div>
+    ```
+
+    **note:** if your website is not on the root path, add a `site` query parameter to each URL like this - `https://amrita.town/next?site=example.com/mypath`.
+      
+3. send a pr to add yourself to `src/members.json` on our [github](https://github.com/amritadottown/website). feel free to tell us a little bit about yourself too!
 
 we're looking forward to seeing you there.
 
