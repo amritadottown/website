@@ -10,5 +10,6 @@ export const GET: APIRoute = ({ request, url, redirect }) => {
 	do {
 		index = Math.floor(Math.random() * members.length);
 	} while(index === currentIndex); // this probably breaks horribly with only 1 member. we're cooler than that tho
-	return redirect(members[index].website, 302);
+	
+	return redirect(`https://${members[index].website}/`, 302);
 };
