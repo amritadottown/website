@@ -6,7 +6,15 @@ import mdx from '@astrojs/mdx';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://amrita.town',
-	output: 'hybrid',
+	output: 'static',
 	adapter: cloudflare(),
 	integrations: [mdx()],
+	markdown: {
+		shikiConfig: {
+			themes: {
+				light: 'material-theme-lighter',
+				dark: 'material-theme-darker'
+			}
+		}
+	}
 });

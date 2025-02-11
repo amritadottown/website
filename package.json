@@ -10,13 +10,14 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^11.1.0",
-		"@astrojs/mdx": "^3.1.7",
-		"astro": "^4.15.9",
+		"@astrojs/cloudflare": "12.2.1",
+		"@astrojs/mdx": "4.0.8",
+		"astro": "5.2.5",
 		"typescript": "^5.6.2"
 	},
 	"devDependencies": {
 		"prettier": "^3.3.3",
 		"prettier-plugin-astro": "^0.14.1"
-	}
+	},
+	"packageManager": "pnpm@9.1.3+sha512.7c2ea089e1a6af306409c4fc8c4f0897bdac32b772016196c469d9428f1fe2d5a21daf8ad6512762654ac645b5d9136bb210ec9a00afa8dbc4677843ba362ecd"
 }
