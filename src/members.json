@@ -20,10 +20,6 @@
 		"website": "ajratnam.github.io"
 	},
 	{
-		"name": "Shravan Sathiyanarayanan",
-		"website": "shravan.lol"
-	},
-	{
 		"name": "Monish N Pillay",
 		"website": "monishnpillay.netlify.app"
 	},
@@ -46,5 +42,9 @@
 	{
 		"name": "Nandagopal Menon",
 		"website": "ngpal.github.io/brainspace"
+	},
+	{
+		"name": "Shravan Sathiyanarayanan",
+		"website": "shravan.lol"
 	}
 ]
