@@ -18,6 +18,17 @@
 	}
 }
 
+@media (color-gamut: p3) {
+	:root {
+		--accent: oklch(52.63% 0.187 13.42);
+	}
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--accent: oklch(66.45% 0.2344 6.44);
+		}
+	}
+}
+
 /* reset */
 *,
 *::before,
