@@ -71,8 +71,12 @@
 		"name": "Hridesh MG",
 		"website": "hrideshmg.com"
 	},
-  {
-    "name": "Hari Varsha V",
-    "website": "varsha.sh"
-  }
+  	{
+  	  	"name": "Hari Varsha V",
+  	  	"website": "varsha.sh"
+  	},
+	{
+		"name": "Shashank Amireddy",
+		"website": "quantumloom.in"
+	}
 ]
