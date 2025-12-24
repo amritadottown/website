@@ -13,8 +13,8 @@ export default defineConfig({
 		shikiConfig: {
 			themes: {
 				light: 'material-theme-lighter',
-				dark: 'material-theme-darker'
-			}
-		}
-	}
+				dark: 'material-theme-darker',
+			},
+		},
+	},
 });

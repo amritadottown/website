@@ -1,33 +1,73 @@
 ---
 layout: '@/layouts/BaseLayout.astro'
-title: Home
+title: 'Home'
 ---
 
 import MemberList from '@/components/MemberList.astro';
-import favicon from '@public/favicon.png'
+import favicon from '@public/favicon.png?inline'; 
 
-<div style="display: flex; flex-direction: row; gap: 1rem; align-items: center;">
-    <img src={favicon.src} style="height: 4.2rem; image-rendering: pixelated; margin-left: -0.5rem" />
-    # amrita.town
+<div style="display: flex; flex-direction: row; gap: 1rem; align-items: center;" >
+	<img src={favicon} style="height: 4.2rem; image-rendering: pixelated; margin-left: -0.5rem" />
+	# amrita.town
 </div>
 
-a webring for Amrita students.
+we're a student community at [Amrita University](https://amrita.edu).
 
-want to take a look? [random site](/random)  
-don't know where to start? check out our [resources](/resources)
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5rem; justify-content: space-between;">
+    <div style="width: fit-content">
+        <a style="font-size: 1.6rem; font-weight: 600; text-decoration: none" href="">apps</a>
+        <p>useful utilities we've developed</p>
+    </div>
+    <div style="width: fit-content">
+        <a style="font-size: 1.6rem; font-weight: 600; text-decoration: none" href="">friends</a>
+        <p>more student communities at Amrita</p>
+    </div>
+</div>
 
-<details style="margin-top: 0.5rem">
- <summary>our members. you could be one of them!</summary>
- <MemberList />
-</details>
+<br />
+---
 
-## have a personal website? join us
+## webring
 
-are you an amrita student? do you have a personal website? we'd love to have you as a part of this.
+what's this? a bunch of awesome Amrita students made personal websites, and we've linked all of them together through a little HTML widget.
 
-emphasis on the _personal_ part, btw - we're looking for websites that tell other humans about yourself, not just show off your skills to recruiters.
+here, try it yourself (you'll find something similar on each site): 
+<div style="display: inline-flex; gap: 1rem;">
+	<a href="https://amrita.town/prev">← prev</a>
+	<a href="https://amrita.town/random">⚄ random</a>
+	<a href="https://amrita.town/next">next →</a>
+</div>
 
-1. make sure your website is a personal website and it has contact details somewhere.
+### why do this?
+
+short answer: owning your digital land is a worthwhile goal.  
+less short answer: read the [manifesto](manifesto).
+
+### members
+
+<MemberList />
+
+### have a personal website? join us
+
+are you an amrita student? do you have a personal website? we'd love to have you as a part of the webring.
+
+#### is my website personal?
+
+the best way to know is *browse the existing entries*. a webring is made for going from one website to the next. start somewhere, and use the widget on each site to go to the next one until you've seen a sufficient number. you'll definitely have a ton of fun doing this.
+
+before you submit your website, ask yourself these questions:  
+
+**am I going to actively maintain my website?**  
+    your website should be something that others can come back to over time. you must have a commitment to continually add or update content, through writing on a blog, updating living documents, or design and technical changes.  
+    this must be something you do yourself - dynamic, api-based components don't count.  
+
+ **is my website a reflection of me?**   
+    your website should be something you think represents you in a well-rounded manner. many sites in this webring go to great lengths to talk about themselves, their interests, life experiences, even just things they learned. a visitor to your website should feel as though they've made a connection with you (not the linkedin kind). we don't want portfolios.
+
+#### how to submit
+
+0. read everything in the previous section.
+1. make sure your website has contact details somewhere, and an RSS feed if you have a blog.
 2. add these links to your website - most people put it in the footer, but presentation is up to you. just make sure it's easily accessible.
 
     ```html
@@ -40,47 +80,8 @@ emphasis on the _personal_ part, btw - we're looking for websites that tell othe
     </div>
     ```
 
-
     **note:** if your website is not on the root path, add a `site` query parameter to each URL like this - `https://amrita.town/next?site=example.com/mypath`.
 
-3. Write an email to us at [contact@amrita.town](mailto:contact@amrita.town) or for extra coolness points, send a pr to add yourself to `src/members.json` on our [github](https://github.com/amritadottown/website). feel free to tell us a little bit about yourself too!
+3. send a pr to add yourself to `src/members.json` on our [github](https://github.com/amritadottown/website).
 
 we're looking forward to seeing you there.
-
-## our vision
-
-you are not a user. you are not a statistic. you are a person.
-
-a person, with a unique sense of self, and a unique experience worth sharing. expressing yourself as you are, and who you could be, is our mission.
-
-picture this, a place on the internet, with your name on it. this place looks exactly the way you want it to look. a place made for other people to drop in, and get to know you. a place that truly belongs to you.
-
-what if you could truly express yourself as you are, with the power of free and open technology that's only gotten better as the years have gone by.
-
-imagine a place where you could post about your interests, rant about your day, a guestbook for others to drop by and leave notes to you to read, blogs about what you're passionate about, a place to post the photos you want others to see, or the books and movies and art that inspires you.
-
-a personal website is the answer.
-
-it's the first step towards claiming ownership of your digital identity. if that notion excites you, read on.
-
-### perfect websites are not the goal
-
-building a website has always been an attainable goal for anyone. unfortunately, the modern web has concealed this in a veil of complexity and 'professionalism'.
-
-the point is ownership, not perfection.
-
-in fact, imperfection is encouraged if the end result is a true expression of humanity and authenticity.
-
-free yourself of what you think a website _should_ look like and make one that speaks to who you are. the only condition is to have a place you're proud of and a place that is truly your own.
-
-perfect is for web designers and people working jobs. do you speak perfect sentences to your close friends?
-
-### how do i find others?
-
-[amrita.town](amrita.town) is a webring, a place connecting all of your online homes, built up of personal websites made by students of amrita. each website contains a widget connecting you to other websites in the webring and this website.
-
-a collection of websites, loving crafted by their creators to be true representations of who they are. that's what we envision the internet to truly be like.
-
-join us in trying to bring back this vision of the internet.
-
-you can go ahead and meet us irl if you want to.

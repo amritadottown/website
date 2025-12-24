@@ -1,82 +1,162 @@
 [
 	{
 		"name": "Nikhil Bharadwaj",
-		"website": "heftymouse.me"
+		"website": "heftymouse.me",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Adithya Nair",
-		"website": "adithyanair.com"
+		"website": "adithyanair.com",
+		"branch": "AID",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Sasank Reddy",
-		"website": "decentparadox.me"
+		"website": "decentparadox.me",
+		"branch": "AIE",
+		"campus": "Bengaluru",
+		"batch": "22-26",
+		"bio": ""
 	},
 	{
 		"name": "Ajay Ratnam",
-		"website": "ajratnam.github.io"
+		"website": "ajratnam.github.io",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "22-26",
+		"bio": ""
 	},
 	{
 		"name": "Monish N Pillay",
-		"website": "monishnpillay.netlify.app"
+		"website": "monishnpillay.netlify.app",
+		"branch": "RAE",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
-		"name": "Praanesh Balakrishnan Nair",
-		"website": "compileartisan.dev"
+		"name": "Praanesh Nair",
+		"website": "compileartisan.dev",
+		"branch": "AIE",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Nithilan Rameshkumar",
-		"website": "nithitsuki.com"
+		"website": "nithitsuki.com",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "24-28",
+		"bio": ""
 	},
 	{
 		"name": "Archishman Ghosh",
-		"website": "www.irregular25.in"
+		"website": "www.irregular25.in",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "22-26",
+		"bio": ""
 	},
 	{
 		"name": "Rishabh Lal",
-		"website": "rishblol.github.io"
+		"website": "rishblol.github.io",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Nandagopal Menon",
-		"website": "ngpal.github.io/brainspace"
+		"website": "ngpal.github.io/brainspace",
+		"branch": "CSE",
+		"campus": "Coimbatore",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Noel Tom",
-		"website": "noeltom.pages.dev"
+		"website": "noeltom.pages.dev",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Easwer Ahdalarasu",
-		"website": "easwera.github.io"
+		"website": "easwera.github.io",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "23-27",
+		"bio": ""
 	},
 	{
 		"name": "Nishith P",
-		"website": "nishithp.page"
+		"website": "nishithp.page",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "22-26",
+		"bio": ""
 	},
 	{
 		"name": "K Arhant",
-		"website": "dumbprism.me"
+		"website": "dumbprism.me",
+		"branch": "AIE",
+		"campus": "Bengaluru",
+		"batch": "22-26",
+		"bio": ""
 	},
 	{
 		"name": "Nischay Hegde",
-		"website": "nischay.me"
+		"website": "nischay.me",
+		"branch": "ECE",
+		"campus": "Bengaluru",
+		"batch": "18-22",
+		"bio": ""
 	},
 	{
 		"name": "Mitran Gokulnath",
-		"website": "mitran.dev"
+		"website": "mitran.dev",
+		"branch": "EAC",
+		"campus": "Bengaluru",
+		"batch": "24-28",
+		"bio": ""
 	},
 	{
 		"name": "Chirayu Chaudhari",
-		"website": "chids.netlify.app"
+		"website": "chids.netlify.app",
+		"branch": "AID",
+		"campus": "Bengaluru",
+		"batch": "24-28",
+		"bio": ""
 	},
 	{
 		"name": "Hridesh MG",
-		"website": "hrideshmg.com"
+		"website": "hrideshmg.com",
+		"branch": "CSE",
+		"campus": "Amritapuri",
+		"batch": "23-27",
+		"bio": ""
 	},
-  	{
-  	  	"name": "Hari Varsha V",
-  	  	"website": "varsha.sh"
-  	},
+	{
+		"name": "Hari Varsha V",
+		"website": "varsha.sh",
+		"branch": "ECE",
+		"campus": "Coimbatore",
+		"batch": "20-24",
+		"bio": ""
+	},
 	{
 		"name": "Shashank Amireddy",
-		"website": "quantumloom.in"
+		"website": "quantumloom.in",
+		"branch": "CSE",
+		"campus": "Bengaluru",
+		"batch": "22-26",
+		"bio": ""
 	}
 ]

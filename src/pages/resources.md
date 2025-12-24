@@ -18,8 +18,8 @@ Here are some tools to help you get started on your website development. Remembe
 
 These are tools that generate a complete static website from your Markdown or HTML files, according to a template that you can either build yourself or find on the internet. This works great for infrequently-updated sites like a personal internet home.
 
--   [hugo](https://gohugo.io) - a very popular SSG written in Go with a massive ecosystem of themes. Check out [https://themes.gohugo.io/](https://themes.gohugo.io/) - you may recognize some of these from around the web!
--   [astro](https://astro.build/) - a JavaScript-based SSG that uses the developer experience of React to build lightweight static websites, which works great for personal websites of all kinds. Take a look at their [themes](https://astro.build/themes/) page for templates you can use and iterate on.
+- [hugo](https://gohugo.io) - a very popular SSG written in Go with a massive ecosystem of themes. Check out [https://themes.gohugo.io/](https://themes.gohugo.io/) - you may recognize some of these from around the web!
+- [astro](https://astro.build/) - a JavaScript-based SSG that uses the developer experience of React to build lightweight static websites, which works great for personal websites of all kinds. Take a look at their [themes](https://astro.build/themes/) page for templates you can use and iterate on.
 
 We don't recommend:
 - Server-rendered sites (Flask, Django, etc.): these are more difficult to host since they need a persistent backend server. 
@@ -55,8 +55,8 @@ Here's a bunch of websites for you to get inspired by.
 
 Here are a bunch of articles and essays that fuel our ideology, great for getting into the right mindset and understanding the large-scale movement that influences this one:
 
--   [what is to be done](https://www.cjthex.com/what-is-to-be-done/) - a manifesto to return to web 1.5, it is a larger call to quit social media but it highlights the beauty of the old web, and how personal it felt compared to today's corporate and sanitized digital landscape.
--   [indie web principles](https://indieweb.org/principles) - a set of principles to keep in mind when building your website and the motivation behind creating your website.
--   [manifesto for a humane web](https://humanewebmanifesto.com/) - essential reading for understanding the importance of what we're doing. it also contains great pointers for what your website should be doing, if you were lacking a clear vision.
--   [the internet is a series of webs](https://aramzs.xyz/essays/the-internet-is-a-series-of-webs/) - brings up some great points about link rot and our responsibility as website holders to link outwards.
--   [we need to rewild the internet](https://www.noemamag.com/we-need-to-rewild-the-internet/) - a great ecology based article on how ecosystems and how that works with digital ecosystems.
+- [what is to be done](https://www.cjthex.com/what-is-to-be-done/) - a manifesto to return to web 1.5, it is a larger call to quit social media but it highlights the beauty of the old web, and how personal it felt compared to today's corporate and sanitized digital landscape.
+- [indie web principles](https://indieweb.org/principles) - a set of principles to keep in mind when building your website and the motivation behind creating your website.
+- [manifesto for a humane web](https://humanewebmanifesto.com/) - essential reading for understanding the importance of what we're doing. it also contains great pointers for what your website should be doing, if you were lacking a clear vision.
+- [the internet is a series of webs](https://aramzs.xyz/essays/the-internet-is-a-series-of-webs/) - brings up some great points about link rot and our responsibility as website holders to link outwards.
+- [we need to rewild the internet](https://www.noemamag.com/we-need-to-rewild-the-internet/) - a great ecology based article on how ecosystems and how that works with digital ecosystems.

@@ -1,75 +1,79 @@
 ---
 import members from '@/members.json';
+import ExternalLink from '@/components/graphics/ExternalLink.svg';
 ---
 
 <>
-	<table class="wide-list">
-		<thead>
-			<tr>
-				<th scope="col">Member</th>
-				<th scope="col">Website</th>
-			</tr>
-		</thead>
-		<tbody>
-			{
-				members.map((e) => (
-					<tr>
-						<td>{e.name}</td>
-						<td>
-							<a href={`https://${e.website}/`}>
-								{e.website}
-							</a>
-						</td>
-					</tr>
-				))
-			}
-		</tbody>
-	</table>
-	<div class="narrow-list">
+	<div class="member-list">
 		{
 			members.map((e) => (
-				<div class="container">
-					<p class="name">{e.name}</p>
-					<a href={`https://${e.website}/`}>{e.website}</a>
-				</div>
+				<a href={`https://${e.website}/`} class="member-container">
+					<div style="display: flex; flex-direction: row; align-items: start; gap: 0.5rem">
+						<img
+							src="/favicon.png"
+							style="width: 32px; height: 32px; image-rendering: pixelated;"
+						/>
+						<div>
+							<div style="display: flex; flex-direction: row; align-items: center; gap: 0.5rem">
+								<p class="name">{e.name}</p>
+								<ExternalLink
+									width={'1.5ch'}
+									height={'1.5ch'}
+									style="color: var(--accent)"
+								/>
+							</div>
+							<p style="color: var(--secondary-light)">
+								{e.website}
+							</p>
+							<p>
+								{e.branch + ' '} {e.campus + ' '} {e.batch}
+							</p>
+							<p>{e.bio}</p>
+						</div>
+					</div>
+				</a>
 			))
 		}
 	</div>
 </>
 
 <style>
-	.wide-list {
-		display: none;
+	.member-list {
+		--x-padding: 0.75rem;
+
+		display: grid;
+		grid-template-columns: auto auto auto;
+		justify-content: space-between;
+		margin: 0 calc(var(--x-padding) * -1);
+		line-height: 1.5;
+		text-decoration: none;
 	}
 
-	.narrow-list {
-		display: block;
-	}
-
-	@media (min-width: 768px) {
-		.wide-list {
-			display: table;
+	.member-container {
+		padding: 0.75rem var(--x-padding);
+		border-radius: 0.2rem;
+		color: var(--text);
+		text-decoration: none;
+		& * {
+			margin: 0;
 		}
+	}
 
-		.narrow-list {
-			display: none;
+	.member-container:hover {
+		background-color: var(--tertiary);
+		outline: 1px solid var(--secondary);
+		& .name {
+			text-decoration: underline;
 		}
 	}
 
-	.container {
-		margin-bottom: 0.2;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--secondary);
-	}
-
-	.container:last-child {
+	.member-container:last-child {
 		border-bottom: none;
 	}
 
-	p.name {
-		font-size: 1.35rem;
+	.name {
 		font-weight: 600;
-		margin-bottom: 0;
+		text-decoration: none;
+		color: var(--accent);
 	}
 </style>
