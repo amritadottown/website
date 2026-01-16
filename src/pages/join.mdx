@@ -1,0 +1,47 @@
+---
+layout: '@/layouts/BaseLayout.astro'
+title: 'Join Us'
+---
+
+# JOIN US
+
+thank you for your interest, here are some steps on getting started with joining
+our webring. 
+
+### is my website personal?
+
+the best way to know is *browse the existing entries*. a webring is made for going from one website to the next. start somewhere, and use the widget on each site to go to the next one until you've seen a sufficient number. you'll definitely have a ton of fun doing this.
+
+before you submit your website, ask yourself these questions:  
+
+**am I going to actively maintain my website?**  
+    your website should be something that others can come back to over time. you must have a commitment to continually add or update content, through writing on a blog, updating living documents, or design and technical changes.  
+    this must be something you do yourself - dynamic, api-based components don't count.  
+
+ **is my website a reflection of me?**   
+    your website should be something you think represents you in a well-rounded manner. many sites in this webring go to great lengths to talk about themselves, their interests, life experiences, even just things they learned. a visitor to your website should feel as though they've made a connection with you (not the linkedin kind). we don't want portfolios.
+
+#### how to submit
+
+0. read everything in the previous section.
+1. make sure your website has contact details somewhere, and an RSS feed if you have a blog.
+2. add these links to your website - most people put it in the footer, but presentation is up to you. just make sure it's easily accessible.
+
+    ```html
+    <!-- example (you can show these 4 links however you want) -->
+    <div>
+        <a href="https://amrita.town">amrita.town</a>
+        <a href="https://amrita.town/prev">← prev</a>
+        <a href="https://amrita.town/random">⚄ random</a>
+        <a href="https://amrita.town/next">next →</a>
+    </div>
+    ```
+
+    **note:** if your website is not on the root path, add a `site` query parameter to each URL like this - `https://amrita.town/next?site=example.com/mypath`.
+
+3. send a pr to add yourself to `src/members.json` on our [github](https://github.com/amritadottown/website).
+
+4. if we find you cool, welcome to amrita.town! 
+
+we're looking forward to seeing you there.
+

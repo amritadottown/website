@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# generated favicons (regenerated on build)
+public/favicons/
+src/favicon-manifest.json

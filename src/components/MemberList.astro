@@ -1,18 +1,27 @@
 ---
 import members from '@/members.json';
+import faviconManifest from '@/favicon-manifest.json';
 import ExternalLink from '@/components/graphics/ExternalLink.svg';
+
+const getFaviconSrc = (website: string) => {
+	return faviconManifest[website] || '/favicon.png';
+};
 ---
 
 <>
 	<div class="member-list">
 		{
-			members.map((e) => (
+			members.slice(1).map((e) => (
 				<a href={`https://${e.website}/`} class="member-container">
 					<div style="display: flex; flex-direction: row; align-items: start; gap: 0.5rem">
-						<img
-							src="/favicon.png"
-							style="width: 32px; height: 32px; image-rendering: pixelated;"
-						/>
+						<div class="icon-container">
+							<img
+								src={getFaviconSrc(e.website)}
+								onerror="this.onerror=null; this.src='/favicon.png';"
+								alt={`${e.name} favicon`}
+								class="favicon"
+							/>
+						</div>
 						<div>
 							<div style="display: flex; flex-direction: row; align-items: center; gap: 0.5rem">
 								<p class="name">{e.name}</p>
@@ -28,7 +37,6 @@ import ExternalLink from '@/components/graphics/ExternalLink.svg';
 							<p>
 								{e.branch + ' '} {e.campus + ' '} {e.batch}
 							</p>
-							<p>{e.bio}</p>
 						</div>
 					</div>
 				</a>
@@ -75,5 +83,23 @@ import ExternalLink from '@/components/graphics/ExternalLink.svg';
 		font-weight: 600;
 		text-decoration: none;
 		color: var(--accent);
+	}
+
+	.icon-container {
+		width: 32px;
+		height: 32px;
+		background-color: var(--tertiary);
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.favicon {
+		width: 24px;
+		height: 24px;
+		padding: 4px;
+		image-rendering: pixelated;
 	}
 </style>

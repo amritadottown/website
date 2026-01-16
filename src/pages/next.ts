@@ -4,10 +4,12 @@ import members from '@/members.json';
 export const prerender = false;
 
 export const GET: APIRoute = ({ url, request, redirect }) => {
-	if(!url.searchParams.get('site') && !request.headers.get('Referer'))
+	if (!url.searchParams.get('site') && !request.headers.get('Referer'))
 		return redirect(`https://amrita.town`, 302);
-	
-	let key = url.searchParams.get('site') ?? new URL(request.headers.get('Referer')).host;
+
+	let key =
+		url.searchParams.get('site') ??
+		new URL(request.headers.get('Referer')).host;
 
 	if (key) {
 		const index = members.findIndex((e) => e.website === key);
