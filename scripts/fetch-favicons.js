@@ -90,7 +90,22 @@ class FaviconFetcher {
 				}
 			}
 		} catch {
-			// Fall through to direct fetch
+			// Fall through to other fallbacks
+		}
+
+		// Secondary: DuckDuckGo's icons service (another reliable, lightweight source)
+		try {
+			const ddgUrl = `https://icons.duckduckgo.com/ip3/${rootDomain}.ico`;
+			const response = await this.fetchWithTimeout(ddgUrl);
+			if (response.ok) {
+				const data = await response.arrayBuffer();
+				// Accept if non-trivial (avoids empty/placeholder responses)
+				if (data.byteLength > 100) {
+					return data;
+				}
+			}
+		} catch {
+			// Fall through to direct site fetch
 		}
 
 		// Fallback: Try direct favicon.ico from site
