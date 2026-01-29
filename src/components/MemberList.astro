@@ -13,31 +13,27 @@ const getFaviconSrc = (website: string) => {
 		{
 			members.slice(1).map((e) => (
 				<a href={`https://${e.website}/`} class="member-container">
-					<div style="display: flex; flex-direction: row; align-items: start; gap: 0.5rem">
-						<div class="icon-container">
-							<img
-								src={getFaviconSrc(e.website)}
-								onerror="this.onerror=null; this.src='/favicon.png';"
-								alt={`${e.name} favicon`}
-								class="favicon"
+					<div class="icon-container">
+						<img
+							src={getFaviconSrc(e.website)}
+							onerror="this.onerror=null; this.src='/favicon.png';"
+							alt={`${e.name} favicon`}
+							class="favicon"
+						/>
+					</div>
+					<div>
+						<div style="display: flex; flex-direction: row; align-items: center; gap: 0.5rem">
+							<p class="name">{e.name}</p>
+							<ExternalLink
+								width={'1.5ch'}
+								height={'1.5ch'}
+								style="color: var(--accent)"
 							/>
 						</div>
-						<div>
-							<div style="display: flex; flex-direction: row; align-items: center; gap: 0.5rem">
-								<p class="name">{e.name}</p>
-								<ExternalLink
-									width={'1.5ch'}
-									height={'1.5ch'}
-									style="color: var(--accent)"
-								/>
-							</div>
-							<p style="color: var(--secondary-light)">
-								{e.website}
-							</p>
-							<p>
-								{e.branch + ' '} {e.campus + ' '} {e.batch}
-							</p>
-						</div>
+						<p style="color: var(--secondary-light)">
+							{e.website}
+						</p>
+						<p>{[e.branch, e.campus, e.batch].join(' ')}</p>
 					</div>
 				</a>
 			))
@@ -48,17 +44,12 @@ const getFaviconSrc = (website: string) => {
 <style>
 	.member-list {
 		--x-padding: 0.75rem;
-		grid-template-columns: auto;
-		justify-content: space-between;
 		margin: 0 calc(var(--x-padding) * -1);
 		line-height: 1.5;
-		text-decoration: none;
-	}
-	@media (min-width: 768px) {
-		.member-list {
-			display: grid;
-			grid-template-columns: auto auto auto;
-		}
+		
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+		justify-content: space-between;
 	}
 
 	.member-container {
@@ -66,7 +57,9 @@ const getFaviconSrc = (website: string) => {
 		border-radius: 0.2rem;
 		color: var(--text);
 		text-decoration: none;
-		& * {
+		display: flex; 
+		gap: 0.5rem;
+		& p {
 			margin: 0;
 		}
 	}
@@ -79,13 +72,8 @@ const getFaviconSrc = (website: string) => {
 		}
 	}
 
-	.member-container:last-child {
-		border-bottom: none;
-	}
-
 	.name {
 		font-weight: 600;
-		text-decoration: none;
 		color: var(--accent);
 	}
 
@@ -93,17 +81,15 @@ const getFaviconSrc = (website: string) => {
 		width: 32px;
 		height: 32px;
 		background-color: var(--tertiary);
-		border-radius: 15px;
+		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		flex-shrink: 0;
 	}
 
 	.favicon {
-		width: 24px;
-		height: 24px;
-		padding: 4px;
+		width: 16px;
+		height: 16px;
 		image-rendering: pixelated;
 	}
 </style>
