@@ -5,14 +5,12 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONCURRENCY_LIMIT = 5;
 const TIMEOUT_MS = 8000;
-const FORCE_REFRESH = process.argv.includes('--force');
 
 class FaviconFetcher {
-	constructor(existingManifest = {}) {
+	constructor() {
 		this.successCount = 0;
-		this.skipCount = 0;
 		this.failCount = 0;
-		this.manifest = { ...existingManifest };
+		this.manifest = {};
 	}
 
 	/**
@@ -54,22 +52,6 @@ class FaviconFetcher {
 	}
 
 	/**
-	 * Check if favicon already exists in cache
-	 */
-	async faviconExists(website) {
-		if (FORCE_REFRESH) return false;
-		if (!this.manifest[website]) return false;
-
-		const faviconPath = path.join(__dirname, '../public', this.manifest[website]);
-		try {
-			await fs.access(faviconPath);
-			return true;
-		} catch {
-			return false;
-		}
-	}
-
-	/**
 	 * Try fetching favicon with a simple, fast strategy:
 	 * 1. Google's favicon service (fast, reliable)
 	 * 2. Direct favicon.ico from site (fallback)
@@ -108,19 +90,22 @@ class FaviconFetcher {
 			// Fall through to direct site fetch
 		}
 
-		// Fallback: Try direct favicon.ico from site
+		// Fallback: Try direct favicon files from site
+		const faviconPaths = ['/favicon.svg', '/favicon.ico', '/favicon.png'];
 		for (const targetPath of [website, rootDomain]) {
-			try {
-				const url = `https://${targetPath}/favicon.ico`;
-				const response = await this.fetchWithTimeout(url);
-				if (response.ok) {
-					const contentType = response.headers.get('content-type');
-					if (contentType?.startsWith('image/')) {
-						return await response.arrayBuffer();
+			for (const faviconFile of faviconPaths) {
+				try {
+					const url = `https://${targetPath}${faviconFile}`;
+					const response = await this.fetchWithTimeout(url);
+					if (response.ok) {
+						const contentType = response.headers.get('content-type');
+						if (contentType?.startsWith('image/')) {
+							return await response.arrayBuffer();
+						}
 					}
+				} catch {
+					// Silent fail, try next
 				}
-			} catch {
-				// Silent fail, try next
 			}
 		}
 
@@ -132,13 +117,6 @@ class FaviconFetcher {
 	 */
 	async fetchFaviconForMember(member, index, total) {
 		const { website } = member;
-
-		// Skip if already cached
-		if (await this.faviconExists(website)) {
-			this.skipCount++;
-			console.log(`⏭️  ${website} (cached) (${index + 1}/${total})`);
-			return;
-		}
 
 		try {
 			const faviconData = await this.tryFetchFavicon(website);
@@ -214,32 +192,18 @@ class FaviconFetcher {
 async function main() {
 	const startTime = Date.now();
 
-	if (FORCE_REFRESH) {
-		console.log('🔄 Force refresh enabled, re-fetching all favicons...\n');
-	}
-
 	try {
 		// Read members.json
 		const membersPath = path.join(__dirname, '../src/members.json');
 		const membersData = await fs.readFile(membersPath, 'utf-8');
 		const members = JSON.parse(membersData);
 
-		// Load existing manifest for caching
-		const manifestPath = path.join(__dirname, '../src/favicon-manifest.json');
-		let existingManifest = {};
-		try {
-			const manifestData = await fs.readFile(manifestPath, 'utf-8');
-			existingManifest = JSON.parse(manifestData);
-		} catch {
-			// No existing manifest, start fresh
-		}
-
 		// Create public/favicons directory if it doesn't exist
 		const faviconsDir = path.join(__dirname, '../public/favicons');
 		await fs.mkdir(faviconsDir, { recursive: true });
 
 		// Fetch all favicons
-		const fetcher = new FaviconFetcher(existingManifest);
+		const fetcher = new FaviconFetcher();
 		await fetcher.fetchAllFavicons(members);
 
 		// Write manifest
@@ -248,7 +212,7 @@ async function main() {
 		// Summary
 		const duration = ((Date.now() - startTime) / 1000).toFixed(1);
 		console.log(
-			`\n📊 Summary: ${fetcher.successCount} fetched, ${fetcher.skipCount} cached, ${fetcher.failCount} fallback (${duration}s)`,
+			`\n📊 Summary: ${fetcher.successCount} fetched, ${fetcher.failCount} fallback (${duration}s)`,
 		);
 	} catch (error) {
 		console.error('❌ Fatal error:', error.message);
