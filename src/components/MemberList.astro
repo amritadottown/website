@@ -3,8 +3,12 @@ import members from '@/members.json';
 import faviconManifest from '@/favicon-manifest.json';
 import ExternalLink from '@/components/graphics/ExternalLink.svg';
 
-const getFaviconSrc = (website: string) => {
-	return faviconManifest[website] || '/favicon.png';
+const FALLBACK_FAVICON = '/favicon.png';
+
+const getFaviconSrc = (website: string): string => {
+	const entry = faviconManifest[website];
+	// null = explicitly failed, undefined = not in manifest, string = valid path
+	return typeof entry === 'string' ? entry : FALLBACK_FAVICON;
 };
 ---
 
