@@ -91,13 +91,6 @@
 		"batch": "23-27"
 	},
 	{
-		"name": "Nishith P",
-		"website": "nishithp.page",
-		"branch": "CSE",
-		"campus": "Bengaluru",
-		"batch": "22-26"
-	},
-	{
 		"name": "K Arhant",
 		"website": "dumbprism.me",
 		"branch": "AIE",
@@ -115,13 +108,6 @@
 		"name": "Mitran Gokulnath",
 		"website": "mitran.dev",
 		"branch": "EAC",
-		"campus": "Bengaluru",
-		"batch": "24-28"
-	},
-	{
-		"name": "Chirayu Chaudhari",
-		"website": "chids.netlify.app",
-		"branch": "AID",
 		"campus": "Bengaluru",
 		"batch": "24-28"
 	},
