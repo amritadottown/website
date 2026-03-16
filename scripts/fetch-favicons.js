@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CONCURRENCY_LIMIT = 5;
-const TIMEOUT_MS = 10000;
+const TIMEOUT_MS = 8000;
 
 class FaviconFetcher {
 	constructor() {
@@ -52,57 +52,61 @@ class FaviconFetcher {
 	}
 
 	/**
-	 * Try fetching favicon from multiple sources with fallback strategy
+	 * Try fetching favicon with a simple, fast strategy:
+	 * 1. Google's favicon service (fast, reliable)
+	 * 2. Direct favicon.ico from site (fallback)
 	 */
 	async tryFetchFavicon(website) {
 		const rootDomain = this.getRootDomain(website);
-		const protocols = ['https', 'http'];
-		const paths = [website, rootDomain];
-		const filenames = ['favicon.ico', 'favicon.png'];
 
-		// Try combinations of protocol, path, and filename
-		for (const protocol of protocols) {
-			for (const targetPath of paths) {
-				// Skip duplicate if website has no subdirectory
-				if (
-					targetPath === rootDomain &&
-					website === rootDomain &&
-					protocol === 'http'
-				) {
-					continue;
-				}
-
-				for (const filename of filenames) {
-					const url = `${protocol}://${targetPath}/${filename}`;
-					try {
-						const response = await this.fetchWithTimeout(url);
-						if (response.ok) {
-							const contentType =
-								response.headers.get('content-type');
-							// Verify it's actually an image
-							if (
-								contentType &&
-								contentType.startsWith('image/')
-							) {
-								return await response.arrayBuffer();
-							}
-						}
-					} catch (error) {
-						// Silent fail, try next option
-					}
-				}
-			}
-		}
-
-		// Final fallback: Google's favicon service
+		// Primary: Google's favicon service (most reliable and fast)
 		try {
 			const googleUrl = `https://www.google.com/s2/favicons?domain=${rootDomain}&sz=32`;
 			const response = await this.fetchWithTimeout(googleUrl);
 			if (response.ok) {
-				return await response.arrayBuffer();
+				const data = await response.arrayBuffer();
+				// Google returns a default globe icon for unknown domains (small size)
+				// Accept if it's reasonably sized (> 100 bytes)
+				if (data.byteLength > 100) {
+					return data;
+				}
 			}
-		} catch (error) {
-			// All options exhausted
+		} catch {
+			// Fall through to other fallbacks
+		}
+
+		// Secondary: DuckDuckGo's icons service (another reliable, lightweight source)
+		try {
+			const ddgUrl = `https://icons.duckduckgo.com/ip3/${rootDomain}.ico`;
+			const response = await this.fetchWithTimeout(ddgUrl);
+			if (response.ok) {
+				const data = await response.arrayBuffer();
+				// Accept if non-trivial (avoids empty/placeholder responses)
+				if (data.byteLength > 100) {
+					return data;
+				}
+			}
+		} catch {
+			// Fall through to direct site fetch
+		}
+
+		// Fallback: Try direct favicon files from site
+		const faviconPaths = ['/favicon.svg', '/favicon.ico', '/favicon.png'];
+		for (const targetPath of [website, rootDomain]) {
+			for (const faviconFile of faviconPaths) {
+				try {
+					const url = `https://${targetPath}${faviconFile}`;
+					const response = await this.fetchWithTimeout(url);
+					if (response.ok) {
+						const contentType = response.headers.get('content-type');
+						if (contentType?.startsWith('image/')) {
+							return await response.arrayBuffer();
+						}
+					}
+				} catch {
+					// Silent fail, try next
+				}
+			}
 		}
 
 		return null;
@@ -112,7 +116,7 @@ class FaviconFetcher {
 	 * Fetch favicon for a single member
 	 */
 	async fetchFaviconForMember(member, index, total) {
-		const { website, name } = member;
+		const { website } = member;
 
 		try {
 			const faviconData = await this.tryFetchFavicon(website);
@@ -120,7 +124,7 @@ class FaviconFetcher {
 			if (faviconData) {
 				// Save favicon to public/favicons/
 				const sanitized = this.sanitizeFilename(website);
-				const filename = `${sanitized}.png`;
+				const filename = `${sanitized}.ico`;
 				const faviconPath = path.join(
 					__dirname,
 					'../public/favicons',
@@ -134,12 +138,15 @@ class FaviconFetcher {
 				this.successCount++;
 				console.log(`✅ ${website} (${index + 1}/${total})`);
 			} else {
+				// Mark as needing fallback in manifest
+				this.manifest[website] = null;
 				this.failCount++;
 				console.log(
-					`⚠️  ${website}: All sources failed, using fallback (${index + 1}/${total})`,
+					`⚠️  ${website}: using fallback (${index + 1}/${total})`,
 				);
 			}
 		} catch (error) {
+			this.manifest[website] = null;
 			this.failCount++;
 			console.log(
 				`⚠️  ${website}: ${error.message} (${index + 1}/${total})`,
@@ -205,14 +212,8 @@ async function main() {
 		// Summary
 		const duration = ((Date.now() - startTime) / 1000).toFixed(1);
 		console.log(
-			`📊 Summary: Successfully fetched ${fetcher.successCount}/${members.length} favicons in ${duration}s`,
+			`\n📊 Summary: ${fetcher.successCount} fetched, ${fetcher.failCount} fallback (${duration}s)`,
 		);
-
-		if (fetcher.failCount > 0) {
-			console.log(
-				`   ${fetcher.failCount} favicon(s) will use the amrita.town fallback logo`,
-			);
-		}
 	} catch (error) {
 		console.error('❌ Fatal error:', error.message);
 		process.exit(1);
