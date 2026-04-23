@@ -1,4 +1,11 @@
 [
+	 {
+        "name": "amrita.town",
+        "website": "amrita.town",
+        "branch": "",
+        "campus": "",
+        "batch": ""
+    },
 	{
         "name": "Sai Amrith Reddy",
         "website": "amrithdev.vercel.app",
