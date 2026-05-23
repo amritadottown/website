@@ -38,9 +38,16 @@ class FaviconFetcher {
 	/**
 	 * Extract root domain from website string
 	 * e.g., "ngpal.github.io/brainspace" -> "ngpal.github.io"
+	 * e.g., "https://example.com/path?q=1" -> "example.com"
 	 */
 	getRootDomain(website) {
-		return website.split('/')[0];
+		try {
+			const urlStr = website.startsWith('http') ? website : `https://${website}`;
+			return new URL(urlStr).hostname;
+		} catch (error) {
+			// Fallback if URL constructor fails
+			return website.replace(/^https?:\/\//, '').split('/')[0].split('?')[0];
+		}
 	}
 
 	/**
@@ -48,7 +55,32 @@ class FaviconFetcher {
 	 * e.g., "ngpal.github.io/brainspace" -> "ngpal.github.io-brainspace"
 	 */
 	sanitizeFilename(website) {
-		return website.replace(/\//g, '-');
+		return website
+			.replace(/^https?:\/\//, '') // Remove protocol
+			.split('?')[0]               // Remove query parameters
+			.split('#')[0]               // Remove hash fragments
+			.replace(/\/+$/, '')         // Remove trailing slashes
+			.replace(/[^a-zA-Z0-9.-]/g, '-'); // Replace invalid file characters with dash
+	}
+
+	getExtension(contentType, url = '') {
+		if (!contentType) {
+			if (url.endsWith('.svg')) return '.svg';
+			if (url.endsWith('.ico')) return '.ico';
+			if (url.endsWith('.png')) return '.png';
+			return '.png';
+		}
+		if (contentType.includes('svg')) return '.svg';
+		if (contentType.includes('png')) return '.png';
+		if (contentType.includes('gif')) return '.gif';
+		if (contentType.includes('jpeg') || contentType.includes('jpg')) return '.jpg';
+		if (contentType.includes('x-icon') || contentType.includes('vnd.microsoft.icon')) return '.ico';
+		
+		if (url.endsWith('.svg')) return '.svg';
+		if (url.endsWith('.ico')) return '.ico';
+		if (url.endsWith('.png')) return '.png';
+		
+		return '.png';
 	}
 
 	/**
@@ -57,8 +89,49 @@ class FaviconFetcher {
 	async tryFetchFavicon(website) {
 		const rootDomain = this.getRootDomain(website);
 		const protocols = ['https', 'http'];
+
+		// Try parsing HTML for favicon link
+		for (const protocol of protocols) {
+			try {
+				const url = `${protocol}://${website}`;
+				const response = await this.fetchWithTimeout(url);
+				if (response.ok) {
+					const contentType = response.headers.get('content-type');
+					if (contentType && contentType.includes('text/html')) {
+						const html = await response.text();
+						const linkRegex = /<link[^>]*rel=['"]?(?:shortcut\s+)?icon['"]?[^>]*href=['"]([^'"]+)['"][^>]*>|<link[^>]*href=['"]([^'"]+)['"][^>]*rel=['"]?(?:shortcut\s+)?icon['"]?[^>]*>/i;
+						const match = html.match(linkRegex);
+						const iconHref = match ? (match[1] || match[2]) : null;
+
+						if (iconHref) {
+							let iconUrl = iconHref;
+							if (!iconUrl.startsWith('http')) {
+								if (iconUrl.startsWith('//')) {
+									iconUrl = `${protocol}:${iconUrl}`;
+								} else if (iconUrl.startsWith('/')) {
+									iconUrl = `${protocol}://${rootDomain}${iconUrl}`;
+								} else {
+									iconUrl = `${protocol}://${website}/${iconUrl}`;
+								}
+							}
+							const iconResponse = await this.fetchWithTimeout(iconUrl);
+							if (iconResponse.ok) {
+								const iconContentType = iconResponse.headers.get('content-type');
+								if (iconContentType && iconContentType.startsWith('image/')) {
+									const ext = this.getExtension(iconContentType, iconUrl);
+									return { data: await iconResponse.arrayBuffer(), ext };
+								}
+							}
+						}
+					}
+				}
+			} catch (error) {
+				// Silent fail
+			}
+		}
+
 		const paths = [website, rootDomain];
-		const filenames = ['favicon.ico', 'favicon.png'];
+		const filenames = ['favicon.ico', 'favicon.png', 'favicon.svg'];
 
 		// Try combinations of protocol, path, and filename
 		for (const protocol of protocols) {
@@ -84,7 +157,8 @@ class FaviconFetcher {
 								contentType &&
 								contentType.startsWith('image/')
 							) {
-								return await response.arrayBuffer();
+								const ext = this.getExtension(contentType, url);
+								return { data: await response.arrayBuffer(), ext };
 							}
 						}
 					} catch (error) {
@@ -99,7 +173,9 @@ class FaviconFetcher {
 			const googleUrl = `https://www.google.com/s2/favicons?domain=${rootDomain}&sz=32`;
 			const response = await this.fetchWithTimeout(googleUrl);
 			if (response.ok) {
-				return await response.arrayBuffer();
+				const contentType = response.headers.get('content-type');
+				const ext = this.getExtension(contentType, googleUrl);
+				return { data: await response.arrayBuffer(), ext };
 			}
 		} catch (error) {
 			// All options exhausted
@@ -115,12 +191,13 @@ class FaviconFetcher {
 		const { website, name } = member;
 
 		try {
-			const faviconData = await this.tryFetchFavicon(website);
+			const result = await this.tryFetchFavicon(website);
 
-			if (faviconData) {
+			if (result && result.data) {
+				const { data: faviconData, ext } = result;
 				// Save favicon to public/favicons/
 				const sanitized = this.sanitizeFilename(website);
-				const filename = `${sanitized}.png`;
+				const filename = `${sanitized}${ext}`;
 				const faviconPath = path.join(
 					__dirname,
 					'../public/favicons',
