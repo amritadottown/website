@@ -169,6 +169,26 @@ function parseDate(dateStr: string): string {
 	}
 }
 
+function isValidDate(dateStr: string): boolean {
+	try {
+		const d = new Date(dateStr);
+		return !isNaN(d.getTime()) && d.getFullYear() >= 2020;
+	} catch {
+		return false;
+	}
+}
+
+function isValidUrl(url: string): boolean {
+	try {
+		const u = new URL(url);
+		if (u.protocol !== "http:" && u.protocol !== "https:") return false;
+		if (u.hostname === "localhost" || u.hostname === "127.0.0.1") return false;
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 function extractText(
 	val: string | { "#text"?: string } | undefined,
 ): string | undefined {
@@ -318,9 +338,13 @@ async function main() {
 					)
 					.filter((p) => {
 						if (seen.has(p.link)) return false;
+						if (!isValidDate(p.published)) return false;
+						if (!isValidUrl(p.link)) return false;
 						seen.add(p.link);
 						return true;
 					});
+
+				if (unique.length === 0) return;
 
 				cache[website] = {
 					name,

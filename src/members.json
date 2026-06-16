@@ -65,7 +65,8 @@
 		"website": "www.irregular25.in",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "22-26"
+		"batch": "22-26",
+		"feeds": ["https://irregular25.in/rss.xml"]
 	},
 	{
 		"name": "Rishabh Lal",
