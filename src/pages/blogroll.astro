@@ -35,8 +35,46 @@ const getFaviconSrc = (website: string) => {
 };
 
 /** Strip HTML tags for plain-text excerpt */
+/** Decode HTML entities (&#xxx; &amp; &lt; etc.) */
+const decodeEntities = (text: string): string => {
+	// Map of named entities to their character
+	const named: Record<string, string> = {
+		amp: "&",
+		lt: "<",
+		gt: ">",
+		quot: '"',
+		apos: "'",
+		nbsp: " ",
+		ndash: "\u2013",
+		mdash: "\u2014",
+		lsquo: "\u2018",
+		rsquo: "\u2019",
+		ldquo: "\u201c",
+		rdquo: "\u201d",
+		hellip: "\u2026",
+		laquo: "\u00ab",
+		raquo: "\u00bb",
+	};
+	// Iterate to handle double-encoded entities (e.g. &amp;rsquo; -> &rsquo; -> ')
+	let prev: string;
+	let result = text;
+	do {
+		prev = result;
+		result = result
+			.replace(/&#(\d+);/g, (_m, code) => String.fromCharCode(Number(code)))
+			.replace(/&#x([0-9a-f]+);/gi, (_m, code) =>
+				String.fromCharCode(parseInt(code, 16)),
+			)
+			.replace(/&([a-zA-Z]+);/g, (_m, name) => named[name] ?? _m);
+	} while (result !== prev);
+	return result;
+};
+
 const stripHtml = (html: string): string =>
-	html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+	decodeEntities(html) // decode first so &#xA; -> \n, &lt; -> <
+		.replace(/<[^>]*>/g, "") // then strip any HTML (including decoded &lt;...&gt;)
+		.replace(/\s+/g, " ") // then collapse whitespace (catches decoded \n)
+		.trim();
 
 /** Truncate to ~N chars on word boundary */
 const truncate = (text: string, max = 280): string => {
