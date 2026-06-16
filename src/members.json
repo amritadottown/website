@@ -11,28 +11,32 @@
 		"website": "heftymouse.me",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://heftymouse.me/blog/rss.xml"]
 	},
 	{
 		"name": "Adithya Nair",
 		"website": "adithyanair.com",
 		"branch": "AID",
 		"campus": "Bengaluru",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://adithyanair.com/rss.xml"]
 	},
 	{
 		"name": "Sasank Reddy",
 		"website": "decentparadox.me",
 		"branch": "AIE",
 		"campus": "Bengaluru",
-		"batch": "22-26"
+		"batch": "22-26",
+		"feeds": ["https://decentparadox.me/rss.xml"]
 	},
 	{
 		"name": "Ajay Ratnam",
 		"website": "ajratnam.github.io",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "22-26"
+		"batch": "22-26",
+		"feeds": ["https://ajratnam.github.io/atom.xml"]
 	},
 	{
 		"name": "Monish N Pillay",
@@ -53,7 +57,8 @@
 		"website": "nithitsuki.com",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "24-28"
+		"batch": "24-28",
+		"feeds": ["https://nithitsuki.com/index.xml"]
 	},
 	{
 		"name": "Archishman Ghosh",
@@ -116,7 +121,8 @@
 		"website": "hrideshmg.com",
 		"branch": "CSE",
 		"campus": "Amritapuri",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://hrideshmg.com/index.xml"]
 	},
 	{
 		"name": "Hari Varsha V",
@@ -130,7 +136,8 @@
 		"website": "quantumloom.in",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "22-26"
+		"batch": "22-26",
+		"feeds": ["https://quantumloom.in/rss.xml"]
 	},
 	{
 		"name": "Namish Pande",
