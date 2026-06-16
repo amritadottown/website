@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"prebuild": "node scripts/fetch-favicons.js",
+		"prebuild": "node scripts/fetch-favicons.js && bun run scripts/fetch-feeds.ts",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro"
@@ -14,6 +14,7 @@
 		"@astrojs/cloudflare": "12.6.12",
 		"@astrojs/mdx": "4.3.13",
 		"astro": "5.16.6",
+		"fast-xml-parser": "^5.9.0",
 		"typescript": "^5.9.3"
 	},
 	"devDependencies": {
