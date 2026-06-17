@@ -42,7 +42,8 @@ const topPosts = allPosts.slice(0, limit);
 						<a href={post.link} class="post-title">
 							{post.title}
 						</a>
-						<span class="post-author">&nbsp;by&nbsp;{member.name}</span>
+						<span class="post-author"><span class="show-desktop">&nbsp;</span>by&nbsp;{member.name}</span>
+						<span class="interpunct-mobile">&nbsp;&middot;&nbsp;</span>
 						<time class="post-date" datetime={post.published}>
 							{new Date(post.published).toLocaleDateString("en-US", {
 								month: "short",
@@ -89,14 +90,27 @@ const topPosts = allPosts.slice(0, limit);
 	}
 
 	.post-date {
-		margin-left: auto;
 		color: var(--secondary-light);
 	}
-
+	
+	.show-desktop {
+		display: none;
+	}
 	/* Desktop: title inline with rest */
 	@media (min-width: 600px) {
 		.post-title {
 			width: auto;
 		}
+
+
+	.post-date {
+		margin-left: auto;
+	}
+	 
+	.interpunct-mobile {
+		display: none;
+	}
+	.show-desktop {
+		display: inline;
 	}
 </style>
