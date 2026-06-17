@@ -105,7 +105,7 @@ const truncate = (text: string, max = 280): string => {
 								width="24"
 								height="24"
 							/>
-							<div class="body">
+							<div class="body" style="line-height: 1;">
 								<div class="meta">
 									<span class="author">{member.name}</span>
 									<time class="date" datetime={post.published}>
@@ -178,7 +178,6 @@ const truncate = (text: string, max = 280): string => {
 		height: 1.5rem;
 		border-radius: 0%;
 		image-rendering: pixelated;
-		margin-top: 0.15rem;
 	}
 
 	.body {
@@ -192,7 +191,6 @@ const truncate = (text: string, max = 280): string => {
 		display: flex;
 		align-items: baseline;
 		gap: 0.5rem;
-		font-size: 0.8rem;
 	}
 
 	.author {
@@ -218,7 +216,6 @@ const truncate = (text: string, max = 280): string => {
 
 	.description {
 		color: var(--secondary-light);
-		font-size: 0.85rem;
 		line-height: 1.4;
 		margin: 0;
 		display: -webkit-box;
@@ -229,7 +226,6 @@ const truncate = (text: string, max = 280): string => {
 
 	.empty {
 		color: var(--secondary-light);
-		font-size: 0.9rem;
 		font-style: italic;
 	}
 </style>
