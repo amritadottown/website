@@ -26,3 +26,6 @@ pnpm-debug.log*
 # generated favicons (regenerated on build)
 public/favicons/
 src/favicon-manifest.json
+
+# generated feed cache (regenerated on build)
+src/feed-cache.json

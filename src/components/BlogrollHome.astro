@@ -1,0 +1,116 @@
+---
+import type { FeedCache, FeedPost } from "@/types";
+
+interface Props {
+	limit?: number;
+}
+
+const { limit = 3 } = Astro.props;
+
+let cache: FeedCache = {};
+try {
+	cache = (await import("@/feed-cache.json")).default as unknown as FeedCache;
+} catch {
+	// feed-cache not generated yet
+}
+
+const allPosts: { post: FeedPost; member: { name: string; website: string } }[] = [];
+
+for (const [website, memberData] of Object.entries(cache)) {
+	for (const post of memberData.posts) {
+		allPosts.push({
+			post,
+			member: { name: memberData.name, website: memberData.website },
+		});
+	}
+}
+
+allPosts.sort(
+	(a, b) => new Date(b.post.published).getTime() - new Date(a.post.published).getTime(),
+);
+
+const topPosts = allPosts.slice(0, limit);
+---
+
+<section>
+	<h2>latest from the webring</h2>
+	{
+		topPosts.length > 0 ? (
+			<ul class="post-list">
+				{topPosts.map(({ post, member }) => (
+					<li class="post-item">
+						<a href={post.link} class="post-title">
+							{post.title}
+						</a>
+						<span class="post-author"><span class="show-desktop">&nbsp;</span>by&nbsp;{member.name}</span>
+						<span class="interpunct-mobile">&nbsp;&middot;&nbsp;</span>
+						<time class="post-date" datetime={post.published}>
+							{new Date(post.published).toLocaleDateString("en-US", {
+								month: "short",
+								day: "numeric",
+								year: "numeric",
+							})}
+						</time>
+					</li>
+				))}
+			</ul>
+		) : (
+			<p>no recent posts yet &mdash; feeds are fetched at build time.</p>
+		)
+	}
+	<a href="/blogroll">view all posts &rarr;</a>
+</section>
+
+<style>
+	.post-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.post-item {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		/* gap: 0.25rem 0.4rem; */
+	}
+
+	.post-title {
+		width: 100%;
+		color: var(--accent);
+		text-decoration: none;
+	}
+
+	.post-title:hover {
+		text-decoration: underline;
+	}
+
+	.post-author {
+		color: var(--secondary-light);
+	}
+
+	.post-date {
+		color: var(--secondary-light);
+	}
+	
+	.show-desktop {
+		display: none;
+	}
+	/* Desktop: title inline with rest */
+	@media (min-width: 600px) {
+		.post-title {
+			width: auto;
+		}
+
+
+	.post-date {
+		margin-left: auto;
+	}
+	 
+	.interpunct-mobile {
+		display: none;
+	}
+	.show-desktop {
+		display: inline;
+	}
+</style>
