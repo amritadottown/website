@@ -42,16 +42,14 @@ const topPosts = allPosts.slice(0, limit);
 						<a href={post.link} class="post-title">
 							{post.title}
 						</a>
-						<span class="post-meta">
-							<span class="post-author">&mdash; {member.name}</span>
-							<time class="post-date" datetime={post.published}>
-								{new Date(post.published).toLocaleDateString("en-US", {
-									month: "short",
-									day: "numeric",
-									year: "numeric",
-								})}
-							</time>
-						</span>
+						<span class="post-author">&mdash; {member.name}</span>
+						<time class="post-date" datetime={post.published}>
+							{new Date(post.published).toLocaleDateString("en-US", {
+								month: "short",
+								day: "numeric",
+								year: "numeric",
+							})}
+						</time>
 					</li>
 				))}
 			</ul>
@@ -69,7 +67,7 @@ const topPosts = allPosts.slice(0, limit);
 		padding: 0;
 	}
 
-	/* Mobile: stack title above, meta below */
+	/* Mobile: stack title above, author + date below */
 	.post-item {
 		padding: 0.35rem 0;
 	}
@@ -84,12 +82,6 @@ const topPosts = allPosts.slice(0, limit);
 		text-decoration: underline;
 	}
 
-	.post-meta {
-		display: flex;
-		gap: 0.4rem;
-		align-items: baseline;
-	}
-
 	.post-author {
 		color: var(--secondary-light);
 		font-size: 0.85rem;
@@ -100,7 +92,7 @@ const topPosts = allPosts.slice(0, limit);
 		font-size: 0.8rem;
 	}
 
-	/* Desktop: inline everything like before */
+	/* Desktop: inline everything, date to the right */
 	@media (min-width: 600px) {
 		.post-item {
 			display: flex;
@@ -111,10 +103,6 @@ const topPosts = allPosts.slice(0, limit);
 		}
 
 		.post-title {
-			display: inline;
-		}
-
-		.post-meta {
 			display: inline;
 		}
 
