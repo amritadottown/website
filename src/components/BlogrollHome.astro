@@ -42,7 +42,7 @@ const topPosts = allPosts.slice(0, limit);
 						<a href={post.link} class="post-title">
 							{post.title}
 						</a>
-						<span class="post-author">&mdash; {member.name}</span>
+						<span class="post-author">&nbsp; &mdash; {member.name}</span>
 						<time class="post-date" datetime={post.published}>
 							{new Date(post.published).toLocaleDateString("en-US", {
 								month: "short",
@@ -67,13 +67,17 @@ const topPosts = allPosts.slice(0, limit);
 		padding: 0;
 	}
 
-	/* Mobile: stack title above, author + date below */
 	.post-item {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.25rem 0.4rem;
 		padding: 0.35rem 0;
+		font-size: 0.9rem;
 	}
 
 	.post-title {
-		display: block;
+		width: 100%;
 		color: var(--accent);
 		text-decoration: none;
 	}
@@ -88,26 +92,15 @@ const topPosts = allPosts.slice(0, limit);
 	}
 
 	.post-date {
+		margin-left: auto;
 		color: var(--secondary-light);
 		font-size: 0.8rem;
 	}
 
-	/* Desktop: inline everything, date to the right */
+	/* Desktop: title inline with rest */
 	@media (min-width: 600px) {
-		.post-item {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: baseline;
-			gap: 0.25rem 0.4rem;
-			font-size: 0.9rem;
-		}
-
 		.post-title {
-			display: inline;
-		}
-
-		.post-date {
-			margin-left: auto;
+			width: auto;
 		}
 	}
 </style>
