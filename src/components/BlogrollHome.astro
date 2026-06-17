@@ -36,66 +36,90 @@ const topPosts = allPosts.slice(0, limit);
 	<h2>latest from the webring</h2>
 	{
 		topPosts.length > 0 ? (
-			<ul class="blogroll-list">
+			<ul class="post-list">
 				{topPosts.map(({ post, member }) => (
-					<li class="blogroll-entry">
-						<a href={post.link}>{post.title}</a>
-						<span class="blogroll-meta">
-							<small>{member.name}</small>
-							<small datetime={post.published}>
+					<li class="post-item">
+						<a href={post.link} class="post-title">
+							{post.title}
+						</a>
+						<span class="post-meta">
+							<span class="post-author">&mdash; {member.name}</span>
+							<time class="post-date" datetime={post.published}>
 								{new Date(post.published).toLocaleDateString("en-US", {
 									month: "short",
 									day: "numeric",
 									year: "numeric",
 								})}
-							</small>
+							</time>
 						</span>
 					</li>
 				))}
 			</ul>
 		) : (
-			<p>no recent posts yet — feeds are fetched at build time.</p>
+			<p>no recent posts yet &mdash; feeds are fetched at build time.</p>
 		)
 	}
-	<a href="/blogroll">view all posts →</a>
+	<a href="/blogroll">view all posts &rarr;</a>
 </section>
 
 <style>
-	.blogroll-list {
+	.post-list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 
-	.blogroll-entry {
-		margin-block: 0.5rem;
+	/* Mobile: stack title above, meta below */
+	.post-item {
+		padding: 0.35rem 0;
 	}
 
-	.blogroll-entry a {
+	.post-title {
 		display: block;
+		color: var(--accent);
+		text-decoration: none;
 	}
 
-	.blogroll-meta {
+	.post-title:hover {
+		text-decoration: underline;
+	}
+
+	.post-meta {
 		display: flex;
-		gap: 0.5rem;
+		gap: 0.4rem;
 		align-items: baseline;
 	}
 
-	.blogroll-meta small {
+	.post-author {
 		color: var(--secondary-light);
+		font-size: 0.85rem;
 	}
 
+	.post-date {
+		color: var(--secondary-light);
+		font-size: 0.8rem;
+	}
+
+	/* Desktop: inline everything like before */
 	@media (min-width: 600px) {
-		.blogroll-entry {
+		.post-item {
 			display: flex;
 			flex-wrap: wrap;
 			align-items: baseline;
 			gap: 0.25rem 0.4rem;
-			margin-block: 0;
+			font-size: 0.9rem;
 		}
 
-		.blogroll-entry a {
+		.post-title {
 			display: inline;
+		}
+
+		.post-meta {
+			display: inline;
+		}
+
+		.post-date {
+			margin-left: auto;
 		}
 	}
 </style>
