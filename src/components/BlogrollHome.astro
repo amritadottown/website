@@ -1,6 +1,5 @@
 ---
 import type { FeedCache, FeedPost } from "@/types";
-import faviconManifest from "@/favicon-manifest.json";
 
 interface Props {
 	limit?: number;
@@ -10,12 +9,11 @@ const { limit = 3 } = Astro.props;
 
 let cache: FeedCache = {};
 try {
-	cache = (await import("@/feed-cache.json")).default;
+	cache = (await import("@/feed-cache.json")).default as unknown as FeedCache;
 } catch {
 	// feed-cache not generated yet
 }
 
-// Flatten all posts, sort by date descending, take top N
 const allPosts: { post: FeedPost; member: { name: string; website: string } }[] = [];
 
 for (const [website, memberData] of Object.entries(cache)) {
@@ -34,89 +32,70 @@ allPosts.sort(
 const topPosts = allPosts.slice(0, limit);
 ---
 
-<section class="blogroll-home">
+<section>
 	<h2>latest from the webring</h2>
 	{
 		topPosts.length > 0 ? (
-			<ul class="post-list">
+			<ul class="blogroll-list">
 				{topPosts.map(({ post, member }) => (
-					<li class="post-item">
-						<a href={post.link} class="post-title">
-							{post.title}
-						</a>
-						<span class="post-author">&mdash; {member.name}</span>
-						<time class="post-date" datetime={post.published}>
-							{new Date(post.published).toLocaleDateString("en-US", {
-								month: "short",
-								day: "numeric",
-								year: "numeric",
-							})}
-						</time>
+					<li class="blogroll-entry">
+						<a href={post.link}>{post.title}</a>
+						<span class="blogroll-meta">
+							<small>{member.name}</small>
+							<small datetime={post.published}>
+								{new Date(post.published).toLocaleDateString("en-US", {
+									month: "short",
+									day: "numeric",
+									year: "numeric",
+								})}
+							</small>
+						</span>
 					</li>
 				))}
 			</ul>
 		) : (
-			<p class="empty">no recent posts yet — feeds are fetched at build time.</p>
+			<p>no recent posts yet — feeds are fetched at build time.</p>
 		)
 	}
-	<a href="/blogroll" class="view-all">view all posts →</a>
+	<a href="/blogroll">view all posts →</a>
 </section>
 
 <style>
-	.blogroll-home {
-		margin-block: 1.5rem;
-	}
-
-	h3 {
-		font-size: 1.2rem;
-		font-weight: 600;
-		margin-block-end: 0.75rem;
-	}
-
-	.post-list {
+	.blogroll-list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 
-	.post-item {
+	.blogroll-entry {
+		margin-block: 0.5rem;
+	}
+
+	.blogroll-entry a {
+		display: block;
+	}
+
+	.blogroll-meta {
 		display: flex;
-		flex-wrap: wrap;
+		gap: 0.5rem;
 		align-items: baseline;
-		gap: 0.25rem 0.4rem;
-		font-size: 0.9rem;
 	}
 
-	.post-title {
-		color: var(--accent);
-		text-decoration: none;
-	}
-
-	.post-title:hover {
-		text-decoration: underline;
-	}
-
-	.post-author {
+	.blogroll-meta small {
 		color: var(--secondary-light);
-		font-size: 0.85rem;
 	}
 
-	.post-date {
-		color: var(--secondary-light);
-		font-size: 0.8rem;
-		margin-left: auto;
-	}
+	@media (min-width: 600px) {
+		.blogroll-entry {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: baseline;
+			gap: 0.25rem 0.4rem;
+			margin-block: 0;
+		}
 
-	.empty {
-		color: var(--secondary-light);
-		font-size: 0.9rem;
-		font-style: italic;
-	}
-
-	.view-all {
-		display: inline-block;
-		margin-top: 0.5rem;
-		font-size: 0.85rem;
-		color: var(--accent);
+		.blogroll-entry a {
+			display: inline;
+		}
 	}
 </style>
