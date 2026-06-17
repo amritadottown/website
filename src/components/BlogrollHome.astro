@@ -42,7 +42,7 @@ const topPosts = allPosts.slice(0, limit);
 						<a href={post.link} class="post-title">
 							{post.title}
 						</a>
-						<span class="post-author">&nbsp; &mdash; {member.name}</span>
+						<span class="post-author">&nbsp;by&nbsp;{member.name}</span>
 						<time class="post-date" datetime={post.published}>
 							{new Date(post.published).toLocaleDateString("en-US", {
 								month: "short",
@@ -72,8 +72,6 @@ const topPosts = allPosts.slice(0, limit);
 		flex-wrap: wrap;
 		align-items: baseline;
 		gap: 0.25rem 0.4rem;
-		padding: 0.35rem 0;
-		font-size: 0.9rem;
 	}
 
 	.post-title {
@@ -88,13 +86,11 @@ const topPosts = allPosts.slice(0, limit);
 
 	.post-author {
 		color: var(--secondary-light);
-		font-size: 0.85rem;
 	}
 
 	.post-date {
 		margin-left: auto;
 		color: var(--secondary-light);
-		font-size: 0.8rem;
 	}
 
 	/* Desktop: title inline with rest */
