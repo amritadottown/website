@@ -29,3 +29,5 @@ src/favicon-manifest.json
 
 # generated feed cache (regenerated on build)
 src/feed-cache.json
+
+.wrangler/

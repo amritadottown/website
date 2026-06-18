@@ -11,9 +11,9 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/mdx": "4.3.13",
-		"astro": "5.16.6",
+		"@astrojs/cloudflare": "13.7.0",
+		"@astrojs/mdx": "6.0.3",
+		"astro": "6.4.8",
 		"fast-xml-parser": "^5.9.0",
 		"typescript": "^5.9.3"
 	},
