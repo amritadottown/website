@@ -105,7 +105,7 @@ const truncate = (text: string, max = 280): string => {
 								width="24"
 								height="24"
 							/>
-							<div class="body" style="line-height: 1;">
+							<div class="body" style="line-height: 1.3;">
 								<div class="meta">
 									<span class="author">{member.name}</span>
 									<time class="date" datetime={post.published}>
@@ -139,25 +139,15 @@ const truncate = (text: string, max = 280): string => {
 </BaseLayout>
 
 <style>
-	.blogroll-page {
-		max-width: 60ch;
-	}
-
-	h1 {
-		font-size: 2rem;
-		margin-block-end: 0.25rem;
-	}
-
 	.subtitle {
 		color: var(--secondary-light);
-		font-size: 0.9rem;
 		margin-block-end: 2rem;
 	}
 
 	.feed {
 		display: flex;
 		flex-direction: column;
-		gap: 0;
+		gap: 0.5rem;
 	}
 
 	.entry {
@@ -183,7 +173,7 @@ const truncate = (text: string, max = 280): string => {
 	.body {
 		display: flex;
 		flex-direction: column;
-		gap: 0.15rem;
+		gap: 0.5rem;
 		min-width: 0;
 	}
 
@@ -191,6 +181,8 @@ const truncate = (text: string, max = 280): string => {
 		display: flex;
 		align-items: baseline;
 		gap: 0.5rem;
+		line-height: 1;
+		margin-bottom: 0.2em;
 	}
 
 	.author {
@@ -206,7 +198,7 @@ const truncate = (text: string, max = 280): string => {
 		color: var(--text);
 		font-weight: 500;
 		text-decoration: none;
-		line-height: 1.3;
+		text-transform: none;
 	}
 
 	.title:hover {
@@ -216,12 +208,12 @@ const truncate = (text: string, max = 280): string => {
 
 	.description {
 		color: var(--secondary-light);
-		line-height: 1.4;
 		margin: 0;
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+		text-transform: none;
 	}
 
 	.empty {
