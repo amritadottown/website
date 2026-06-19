@@ -17,4 +17,9 @@ export default defineConfig({
 			},
 		},
 	},
+	session: {
+		driver: {
+			entrypoint: 'unstorage/drivers/null'
+		}
+	}
 });
