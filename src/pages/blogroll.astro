@@ -140,8 +140,7 @@ const truncate = (text: string, max = 280): string => {
 
 <style>
 	.subtitle {
-		color: var(--secondary-light);
-		margin-block-end: 2rem;
+		margin-block-end: 1.5rem;
 	}
 
 	.feed {
@@ -160,7 +159,8 @@ const truncate = (text: string, max = 280): string => {
 	}
 
 	.entry:hover {
-		background: var(--tertiary);
+		background-color: var(--tertiary);
+		outline: 1px solid var(--secondary);
 	}
 
 	.avatar {
