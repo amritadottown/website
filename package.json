@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"prebuild": "node scripts/fetch-favicons.js && bun run scripts/fetch-feeds.ts",
+		"prebuild": "node scripts/fetch-favicons.js && node scripts/fetch-feeds.ts",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro"
