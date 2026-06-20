@@ -31,6 +31,7 @@ interface MemberFeedCache {
 	name: string;
 	website: string;
 	posts: FeedPost[];
+	feedUrls?: string[];
 }
 
 type FeedCache = Record<string, MemberFeedCache>;
@@ -350,6 +351,7 @@ async function main() {
 					name,
 					website,
 					posts: unique,
+					feedUrls: feedUrls,
 				};
 
 				console.log(

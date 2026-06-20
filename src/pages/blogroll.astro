@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import type { FeedCache, FeedPost } from "@/types";
 import faviconManifest from "@/favicon-manifest.json";
+import RssIcon from "@/components/graphics/Rss.svg";
 
 let cache: FeedCache = {};
 try {
@@ -87,9 +88,18 @@ const truncate = (text: string, max = 280): string => {
 
 <BaseLayout title="Blogroll">
 	<main class="blogroll-page">
-		<h1>blogroll</h1>
+		<div class="heading-row">
+			<h1>blogroll
+			<a href="/blogroll.xml" class="heading-link" title="subscribe via rss">
+				<RssIcon width="1.6rem" height="1.6rem" />
+			</a>
+			</h1>
+
+		</div>
 		<p class="subtitle">
 			recent posts from the <a href="/">amrita.town</a> webring
+			<a href="/blogroll.opml" class="opml-link" title="download opml">opml</a>
+
 		</p>
 
 		{
@@ -139,8 +149,49 @@ const truncate = (text: string, max = 280): string => {
 </BaseLayout>
 
 <style>
+	.heading-row {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.heading-row h1 {
+		margin-block-end: 0;
+	}
+
+	.heading-link {
+		display: inline-flex;
+		align-items: center;
+		color: var(--text);
+	}
+
+	.heading-link:hover {
+		color: var(--accent);
+	}
+
+	.heading-link svg {
+		fill: currentColor;
+	}
+
 	.subtitle {
 		margin-block-end: 1.5rem;
+	}
+
+	.opml-link {
+		color: var(--text);
+		text-decoration: none;
+		border: 1px solid var(--secondary);
+		border-radius: 0.2rem;
+		padding: 0.1rem 0.4rem;
+		font-size: 0.75rem;
+		line-height: 1;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.opml-link:hover {
+		color: var(--accent);
+		border-color: var(--accent);
 	}
 
 	.feed {

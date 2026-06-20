@@ -19,6 +19,7 @@ export interface MemberFeedCache {
 	website: string;
 	favicon: string;
 	posts: FeedPost[];
+	feedUrls?: string[];
 }
 
 export type FeedCache = Record<string, MemberFeedCache>;

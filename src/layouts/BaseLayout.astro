@@ -14,6 +14,7 @@ const { title } = (Astro.props['frontmatter'] as Props) || Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		{Astro.url.pathname.startsWith('/blogroll') && <link rel="alternate" type="application/rss+xml" title="amrita.town blogroll" href="/blogroll.xml" />}
 		<title>{title} - amrita.town</title>
 	</head>
 	<body>
