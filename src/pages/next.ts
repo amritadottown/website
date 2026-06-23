@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import members from '@/members.json';
+import members from '@/sorted-members';
 
 export const prerender = false;
 

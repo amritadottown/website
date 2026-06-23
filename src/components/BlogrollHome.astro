@@ -1,6 +1,5 @@
 ---
 import type { FeedCache, FeedPost } from "@/types";
-import RssIcon from "@/components/graphics/Rss.svg";
 
 interface Props {
 	limit?: number;
@@ -35,11 +34,7 @@ const topPosts = allPosts.slice(0, limit);
 
 <section>
 	<div class="heading-row">
-	<h2>latest from the webring
-		<a href="/blogroll.xml" class="heading-link" title="subscribe via rss">
-				<RssIcon width="0.66em" height="0.66em" />
-			</a>
-	</h2>
+	<h2>latest from the webring</h2>
 			
 	</div>
 	{
@@ -86,10 +81,6 @@ const topPosts = allPosts.slice(0, limit);
 
 	.heading-link:hover {
 		color: var(--accent);
-	}
-
-	.heading-link svg {
-		fill: currentColor;
 	}
 
 	.post-list {

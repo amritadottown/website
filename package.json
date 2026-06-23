@@ -14,11 +14,11 @@
 		"@astrojs/cloudflare": "13.7.0",
 		"@astrojs/mdx": "6.0.3",
 		"astro": "6.4.8",
-		"fast-xml-parser": "^5.9.0",
+		"fast-xml-parser": "^5.9.3",
 		"typescript": "^5.9.3"
 	},
 	"devDependencies": {
-		"prettier": "^3.8.1",
+		"prettier": "^3.8.4",
 		"prettier-plugin-astro": "^0.14.1"
 	}
 }

@@ -1,5 +1,5 @@
 ---
-import members from '@/members.json';
+import members from '@/sorted-members';
 import faviconManifest from '@/favicon-manifest.json';
 import ExternalLink from '@/components/graphics/ExternalLink.svg';
 
@@ -11,7 +11,7 @@ const getFaviconSrc = (website: string) => {
 <>
 	<div class="member-list">
 		{
-			members.slice(1).map((e) => (
+			members.filter((e) => e.website !== 'amrita.town').map((e) => (
 				<a href={`https://${e.website}/`} class="member-container">
 					<div class="icon-container">
 						<img
