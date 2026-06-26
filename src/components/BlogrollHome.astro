@@ -1,5 +1,6 @@
 ---
 import type { FeedCache, FeedPost } from "@/types";
+import sortedMembers from "@/sorted-members";
 
 interface Props {
 	limit?: number;
@@ -16,11 +17,15 @@ try {
 
 const allPosts: { post: FeedPost; member: { name: string; website: string } }[] = [];
 
-for (const [website, memberData] of Object.entries(cache)) {
-	for (const post of memberData.posts) {
+// members.json is the source of truth for identity + feed URLs;
+// feed-cache.json holds only the posts keyed by website.
+for (const member of sortedMembers) {
+	if (!member.feeds?.length) continue;
+	const posts = cache[member.website] ?? [];
+	for (const post of posts) {
 		allPosts.push({
 			post,
-			member: { name: memberData.name, website: memberData.website },
+			member: { name: member.name, website: member.website },
 		});
 	}
 }

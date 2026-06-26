@@ -7,6 +7,7 @@
 		"start": "astro dev",
 		"prebuild": "bun scripts/fetch-favicons.js && bun scripts/fetch-feeds.ts",
 		"build": "astro build",
+		"speedtest": "bash scripts/speedtest.sh",
 		"preview": "astro preview",
 		"astro": "astro"
 	},

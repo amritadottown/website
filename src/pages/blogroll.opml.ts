@@ -1,14 +1,7 @@
 import type { APIRoute } from "astro";
-import type { FeedCache } from "@/types";
+import sortedMembers from "@/sorted-members";
 
 export const GET: APIRoute = async () => {
-	let cache: FeedCache = {};
-	try {
-		cache = (await import("@/feed-cache.json")).default;
-	} catch {
-		// not generated yet
-	}
-
 	const escapeXml = (str: string) =>
 		str
 			.replace(/&/g, "&amp;")
@@ -16,11 +9,13 @@ export const GET: APIRoute = async () => {
 			.replace(/>/g, "&gt;")
 			.replace(/"/g, "&quot;");
 
-	const outlines = Object.values(cache)
-		.filter((m) => m.feedUrls && m.feedUrls.length > 0)
+	// members.json is the source of truth for feed URLs (OPML lists feeds,
+	// not posts, so feed-cache.json isn't needed here at all).
+	const outlines = sortedMembers
+		.filter((m) => m.feeds && m.feeds.length > 0)
 		.map(
 			(m) =>
-				`    <outline text="${escapeXml(m.name)}" title="${escapeXml(m.name)}" htmlUrl="${escapeXml(`https://${m.website}`)}" xmlUrl="${escapeXml(m.feedUrls![0])}" />`,
+				`    <outline text="${escapeXml(m.name)}" title="${escapeXml(m.name)}" htmlUrl="${escapeXml(`https://${m.website}`)}" xmlUrl="${escapeXml(m.feeds![0])}" />`,
 		)
 		.join("\n");
 

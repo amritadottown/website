@@ -14,12 +14,9 @@ export interface FeedPost {
 	description?: string;
 }
 
-export interface MemberFeedCache {
-	name: string;
-	website: string;
-	favicon: string;
-	posts: FeedPost[];
-	feedUrls?: string[];
-}
-
-export type FeedCache = Record<string, MemberFeedCache>;
+/**
+ * Feed cache: posts only, keyed by member website.
+ * Members.json is the source of truth for identity + feed URLs;
+ * this cache holds just the volatile post content fetched at build time.
+ */
+export type FeedCache = Record<string, FeedPost[]>;

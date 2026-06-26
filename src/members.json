@@ -50,7 +50,8 @@
 		"website": "compileartisan.dev",
 		"branch": "AIE",
 		"campus": "Bengaluru",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://compileartisan.dev/rss.xml"]
 	},
 	{
 		"name": "Nithilan Rameshkumar",
@@ -73,21 +74,24 @@
 		"website": "rishblol.github.io",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://rishblol.github.io/rss.xml"]
 	},
 	{
 		"name": "Nandagopal Menon",
 		"website": "ngpal.github.io/brainspace",
 		"branch": "CSE",
 		"campus": "Coimbatore",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://ngpal.github.io/brainspace/index.xml"]
 	},
 	{
 		"name": "Noel Tom",
 		"website": "noeltom.pages.dev",
 		"branch": "CSE",
 		"campus": "Bengaluru",
-		"batch": "23-27"
+		"batch": "23-27",
+		"feeds": ["https://noeltom.pages.dev/rss.xml"]
 	},
 	{
 		"name": "Easwer Ahdalarasu",
@@ -101,14 +105,16 @@
 		"website": "dumbprism.me",
 		"branch": "AIE",
 		"campus": "Bengaluru",
-		"batch": "22-26"
+		"batch": "22-26",
+		"feeds": ["https://dumbprism.me/rss.xml"]
 	},
 	{
 		"name": "Nischay Hegde",
 		"website": "nischay.me",
 		"branch": "ECE",
 		"campus": "Bengaluru",
-		"batch": "18-22"
+		"batch": "18-22",
+		"feeds": ["https://nischay.me/feed.xml"]
 	},
 	{
 		"name": "Mitran Gokulnath",
@@ -145,6 +151,7 @@
 		"website": "namishh.com",
 		"branch": "CSE",
 		"campus": "Amaravati",
-		"batch": "25-29"
+		"batch": "25-29",
+		"feeds": ["https://namishh.com/rss.xml"]
 	}
 ]

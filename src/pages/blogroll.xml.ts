@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import type { FeedCache } from "@/types";
+import sortedMembers from "@/sorted-members";
 
 export const GET: APIRoute = async () => {
 	let cache: FeedCache = {};
@@ -20,15 +21,19 @@ export const GET: APIRoute = async () => {
 
 	const allPosts: PostWithMember[] = [];
 
-	for (const [website, memberData] of Object.entries(cache)) {
-		for (const post of memberData.posts) {
+	// members.json is the source of truth for identity + feed URLs;
+	// feed-cache.json holds only the posts keyed by website.
+	for (const member of sortedMembers) {
+		if (!member.feeds?.length) continue;
+		const posts = cache[member.website] ?? [];
+		for (const post of posts) {
 			allPosts.push({
 				title: post.title,
 				link: post.link,
 				published: post.published,
 				description: post.description,
-				author: memberData.name,
-				website: memberData.website,
+				author: member.name,
+				website: member.website,
 			});
 		}
 	}
