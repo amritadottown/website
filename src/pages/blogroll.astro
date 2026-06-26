@@ -94,17 +94,13 @@ const truncate = (text: string, max = 280): string => {
 <BaseLayout title="Blogroll">
 	<main class="blogroll-page">
 		<div class="heading-row">
-			<h1>blogroll
-			<a href="/blogroll.xml" class="heading-link" title="subscribe via rss">
-				<RssIcon width="1.6rem" height="1.6rem" />
-			</a>
-			</h1>
+			<h1>blogroll</h1>
 
 		</div>
 		<p class="subtitle">
 			recent posts from the <a href="/">amrita.town</a> webring
 			<a href="/blogroll.opml" class="opml-link" title="download opml">opml</a>
-
+			<a href="/blogroll.xml" class="opml-link" title="subscribe via rss">RSS</a>
 		</p>
 
 		{
@@ -187,7 +183,8 @@ const truncate = (text: string, max = 280): string => {
 		text-decoration: none;
 		border: 1px solid var(--secondary);
 		border-radius: 0.2rem;
-		padding: 0.1rem 0.4rem;
+		margin-left: 0.5rem;
+		padding: 0rem 0.2rem;
 		font-size: 0.75rem;
 		line-height: 1;
 		text-transform: uppercase;
