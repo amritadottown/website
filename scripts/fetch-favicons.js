@@ -99,9 +99,14 @@ class FaviconFetcher {
 					const contentType = response.headers.get('content-type');
 					if (contentType && contentType.includes('text/html')) {
 						const html = await response.text();
-						const linkRegex = /<link[^>]*rel=['"]?(?:shortcut\s+)?icon['"]?[^>]*href=['"]([^'"]+)['"][^>]*>|<link[^>]*href=['"]([^'"]+)['"][^>]*rel=['"]?(?:shortcut\s+)?icon['"]?[^>]*>/i;
+						// Match <link rel=icon href=...> in any order, with
+					// quoted ("..." or '...') OR unquoted attribute values
+					// (valid HTML5 — e.g. <link rel=icon href=/foo.svg>).
+					const linkRegex = /<link[^>]*?rel\s*=\s*["']?(?:shortcut\s+)?icon["']?[^>]*?href\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s>]+))[^>]*>|<link[^>]*?href\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s>]+))[^>]*?rel\s*=\s*["']?(?:shortcut\s+)?icon["']?[^>]*>/i;
 						const match = html.match(linkRegex);
-						const iconHref = match ? (match[1] || match[2]) : null;
+						const iconHref = match
+							? (match[1] || match[2] || match[3] || match[4] || match[5] || match[6])
+							: null;
 
 						if (iconHref) {
 							let iconUrl = iconHref;
