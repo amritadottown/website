@@ -160,5 +160,13 @@
 		"branch": "AID",
 		"campus": "Bengaluru",
 		"batch": "24-28"
-	}
+	},
+  {
+    "name": "Praneeth V",
+    "website": "bananameatpatty.vercel.app",
+    "branch": "cse",
+    "campus": "Coimbatore",
+    "batch": "22-26",
+    "feeds": ["http://bananameatpatty.vercel.app/blog/index.xml"]
+  }
 ]
