@@ -161,5 +161,13 @@
     "campus": "Coimbatore",
     "batch": "22-26",
     "feeds": ["http://bananameatpatty.vercel.app/blog/index.xml"]
+  },
+	{
+    "name": "Kishore R",
+    "website": "kishoreravikumar.in",
+    "branch": "AIE",
+    "campus": "Amritapuri",
+    "batch": "23-27",
+    "feeds": ["http://kiahoreravikumar.in/rss.xml"]
   }
 ]
