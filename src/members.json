@@ -170,4 +170,13 @@
     "batch": "22-26",
     "feeds": ["https://ritesh-koushik.vercel.app"]
   },
+	{
+ 	"name": "Priyansh Narang",
+ 	"website": "priyanshnarang.in",
+ 	"branch": "CSE",
+ 	"campus": "Coimbatore",
+ 	"batch": "23-27",
+ 	"feeds": ["https://www.priyanshnarang.in/rss.xml"]
+ }
+
 ]
